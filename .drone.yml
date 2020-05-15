@@ -14,5 +14,9 @@ steps:
       - yamllint
     image: golang:1.14
     commands:
-      - cd pkg/memory
+      - cd pkg/binary
+      - go test
+      - cd ../csv
+      - go test
+      - cd ../memory
       - go test
