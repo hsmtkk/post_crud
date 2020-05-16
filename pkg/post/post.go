@@ -1,6 +1,7 @@
 package post
 
 import (
+	"encoding/json"
 	"fmt"
 	"strconv"
 )
@@ -24,6 +25,22 @@ func NewFromStrings(ss []string) (Post, error) {
 		return Post{}, err
 	}
 	return Post{ID: id, Content: ss[1], Author: ss[2]}, nil
+}
+
+func (p *Post) ToJSON() (string, error) {
+	bs, err := json.Marshal(p)
+	if err != nil {
+		return "", err
+	}
+	return string(bs), nil
+}
+
+func FromJSON(js string) (Post, error) {
+	p := Post{}
+	if err := json.Unmarshal([]byte(js), &p); err != nil {
+		return Post{}, err
+	}
+	return p, nil
 }
 
 type PostStore interface {

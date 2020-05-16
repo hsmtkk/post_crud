@@ -20,3 +20,21 @@ steps:
       - go test
       - cd ../memory
       - go test
+  
+  - name: build
+    depends_on:
+      - gotest
+    image: golang:1.14
+    environment:
+      CGO_ENABLED: "0"
+    commands:
+      - cd test/redis
+      - go build -o redis
+  
+  - name: run
+    depends_on:
+      - build
+    image: redis:6.0.2
+    commands:
+      - cd test/redis
+      - ./redis

@@ -1,4 +1,4 @@
-package test
+package saveload
 
 import "github.com/hsmtkk/post_crud/pkg/post"
 
