@@ -36,5 +36,6 @@ steps:
       - build
     image: redis:6.0.2
     commands:
+      - redis-server &
       - cd test/redis
       - ./redis
